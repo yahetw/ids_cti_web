@@ -1,0 +1,11 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+burst_detection/__init__.py
+burst_detection.egg-info/PKG-INFO
+burst_detection.egg-info/SOURCES.txt
+burst_detection.egg-info/dependency_links.txt
+burst_detection.egg-info/not-zip-safe
+burst_detection.egg-info/requires.txt
+burst_detection.egg-info/top_level.txt

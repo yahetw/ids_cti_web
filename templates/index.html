@@ -1,0 +1,720 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CTI Analysis</title>
+    <!-- Bootstrap Styles-->
+    <link href="../static/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="../static/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="../static/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" type="text/css" href="../static/css/loading.css">
+
+</head>
+<script>
+    function refreshPage() {
+      // 使用 location.reload() 方法重新加载页面
+      location.reload();
+    }
+    </script>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><b>TT</b>ID</a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>John Doe</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>current_day</em>
+                                    </span>
+                                </div>
+                                <div>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem Ipsum has been the industry's standard dummy text ever since an kwilnw...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem Ipsum has been the industry's standard dummy text ever since the...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>Read All Messages</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-messages -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-tasks">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 1</strong>
+                                        <span class="pull-right text-muted">60% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 2</strong>
+                                        <span class="pull-right text-muted">28% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100" style="width: 28%">
+                                            <span class="sr-only">28% Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 3</strong>
+                                        <span class="pull-right text-muted">60% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60% Complete (warning)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 4</strong>
+                                        <span class="pull-right text-muted">85% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%">
+                                            <span class="sr-only">85% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Tasks</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> New Comment
+                                    <span class="pull-right text-muted small">4 min</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small">12 min</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                    <span class="pull-right text-muted small">4 min</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small">4 min</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small">4 min</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li class="active">
+                        <a class="active-menu" href="/index.html"><i class="fa fa-dashboard"></i> Dashboard</a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/selected_result.html"><i class="fa fa-print"></i> Selected Article</a>
+                            </li>
+                            <li>
+                                <a href="/chart.html"><i class="fa fa-bar-chart-o"></i> Topic Keyword</a>
+                            </li>
+                            <li>
+                                <a href="/cti_view.html"><i class="fa fa-desktop"></i> View Article</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/view_all_article.html"><i class="fa fa-bar-chart-o"></i> View All Article</a>
+                    </li>
+                    <li>
+                        <a href="/real_time_response.html"><i class="fa fa-desktop"></i> Database Crawler</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <script>
+            // 獲取選單項和Dashboard鏈接的引用
+            const dashboardLink = document.querySelector("#main-menu .active-menu");
+            const subMenu = document.querySelector("#main-menu .nav-second-level");
+          
+            // 添加事件監聽器，以切換選單的顯示和隱藏
+            dashboardLink.addEventListener("click", function(event) {
+              event.preventDefault(); // 阻止默認鏈接行為
+              subMenu.classList.toggle("show");
+            });
+          
+            // 添加事件監聽器，以重新載入頁面
+            dashboardLink.addEventListener("click", function() {
+              if (subMenu.classList.contains("show")) {
+                location.reload(); // 重新載入頁面
+              }
+            });
+          </script>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header" style="position: relative;">
+
+                              <div style="float: left;">
+                                TTID <small>Trending Threat Intelligence Discovery</small>
+                              </div>
+                              <form action="/update_date" method="POST">
+                                &nbsp
+                              <button id="set_para_Button" class="btn btn-primary btn-lg" onclick="refreshPage()" style="padding: 5px; display: inline-block; vertical-align: middle;">
+                                <img src="../static/icon/Refresh_icon.png" style="height: 25px; width: 25px;">
+                              </button>
+                              <h3 style="display: inline-block; position:absolute; right: 0px;">最新資料時間：{{latest_data_time}}</h3>
+                              </form>
+                              <!-- <div style="float: right;position: absolute; right: 0px;">
+                                <h3 style="display: inline-block; margin-left: 10px;">最新資料時間：{{latest_data_time}}</h3>
+                              </div> -->
+                        </h1>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-green green">
+                            <div class="panel-left pull-left green">
+                                <i class="fa fa-file fa-5x"></i>
+                                
+                            </div>
+                            <div class="panel-right pull-right">
+								<h3>{{count_list[0]}} </h3>
+                               <strong>至今新聞數量</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-blue blue">
+                              <div class="panel-left pull-left blue">
+                                <i class="fa fa-list-alt fa-5x"></i>
+								</div>
+
+                            <div class="panel-right pull-right">
+							<h3>{{count_list[1]}} </h3>
+                               <strong>7天內新聞數量</strong>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-red red">
+                            <div class="panel-left pull-left red">
+                                <i class="fa fa-calendar fa-5x"></i>
+                               
+                            </div>
+                            <div class="panel-right pull-right">
+							 <h3>{{count_list[2]}}  </h3>
+                               <strong>30天內新聞數量</strong>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-brown brown">
+                            <div class="panel-left pull-left brown">
+                                <i class="fa fa-bar-chart-o fa-5x"></i>
+                                
+                            </div>
+                            <div class="panel-right pull-right">
+							<h3>{{count_list[3]}}</h3>
+                             <strong>資料庫新聞總數</strong>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <!-- 初始設定為隱藏 -->
+                        <div id="loader" class="loader" style="display: none;"></div> 
+                        <div class="panel panel-default" style="padding: 25px;">
+                            <H3 style="font-weight: bold;">查看過去7天</H3>
+                            <br>
+                            <br>
+                            <form action="/" method="POST" onsubmit="return validateForm()">
+                                <div>
+                                    <label for="date-input" class="date-label">近期日期：</label>
+                                    <input type="date" id="date-input" name="date-input">
+                                    &emsp;&emsp;
+                                    <label for="date-input" class="date-label">歷史日期：</label>
+                                    <input type="date" id="past-dates-last" name="date-history-last" disabled>
+                                    <label  class="date-label">&nbsp;&nbsp;~ </label>
+                                    <input type="date" id="past-dates-text" name="date-history" disabled>
+                                    &emsp;
+                                    <button id="Button_h7c1" name= "Button_h7c1" class="btn btn-primary btn-lg" onclick="executeTask()">執行</button>        
+                                    <br>
+                                    <br>
+                                </div>
+                                <div>
+                                    <H3 style="font-weight: bold;">查看過去3天</H3>
+                                    <br>
+                                    <br>
+                                    <label for="date-input" class="date-label">近期日期：</label>
+                                    <input type="date" id="date-input2" name="date-input2">
+                                    &emsp;&emsp;
+                                    <label for="date-input" class="date-label">歷史日期：</label>
+                                    <input type="date" id="past-dates-last2" name="date-history-last2" disabled>
+                                    <label  class="date-label">&nbsp;&nbsp;~</label>
+                                    <input type="date" id="past-dates-text2" name="date-history2" disabled>
+                                    &emsp;
+                                    <button id="Button_h3c1" name= "Button_h3c1" class="btn btn-primary btn-lg" onclick="executeTask()">執行</button>
+                                    <br>
+                                    <br>
+                                </div>
+                                <br>
+                                <div>
+                                    <H3 style="font-weight: bold;">查看過去9天，近期3天</H3>
+                                    <br>
+                                    <br>
+                                    <label for="date-input" class="date-label">近期日期：</label>
+                                    <input type="date" id="date-input-disabled3" name="date-input-disabled3" disabled>
+                                    <label  class="date-label">&nbsp;&nbsp;~</label>
+                                    <input type="date" id="date-input3" name="date-input3">
+                                    &emsp;&emsp;
+                                    <label for="date-input" class="date-label">歷史日期：</label>
+                                    <input type="date" id="past-dates-last3" name="date-history-last3" disabled>
+                                    <label  class="date-label">&nbsp;&nbsp;~</label>
+                                    <input type="date" id="past-dates-text3" name="date-history3" disabled>
+                                    &emsp;
+                                    <button id="Button_h9c3" name= "Button_h9c3" class="btn btn-primary btn-lg" onclick="executeTask()">執行</button>
+                                    <br>
+                                    <br>
+                                </div>
+                                <div>
+                                    <H3 style="font-weight: bold;">查看過去12天，近期3天</H3>
+                                    <br>
+                                    <br>
+                                    <label for="date-input" class="date-label">近期日期：</label>
+                                    <input type="date" id="date-input-disabled4" name="date-input-disabled4" disabled>
+                                    <label  class="date-label">&nbsp;&nbsp;~</label>
+                                    <input type="date" id="date-input4" name="date-input4">
+                                    &emsp;&emsp;
+                                    <label for="date-input" class="date-label">歷史日期：</label>
+                                    <input type="date" id="past-dates-last4" name="date-history-last4" disabled>
+                                    <label  class="date-label">&nbsp;&nbsp;~</label>
+                                    <input type="date" id="past-dates-text4" name="date-history4" disabled>
+                                    &emsp;
+                                    <button id="Button_h12c3" name= "Button_h12c3" class="btn btn-primary btn-lg" onclick="executeTask()">執行</button>
+                                    <br>
+                                    <br>
+                                </div>
+                            </form>
+                        </div>
+
+                        <script>
+                            function validateForm() {
+                                var inputDate1 = new Date(document.getElementById('date-input').value);
+                                var inputDate2 = new Date(document.getElementById('date-input2').value);
+                                var inputDate3 = new Date(document.getElementById('date-input3').value);
+                                var inputDate4 = new Date(document.getElementById('date-input4').value);
+                                var today = new Date();
+                        
+                                if (inputDate1 > today || inputDate2 > today || inputDate3 > today || inputDate4 > today) {
+                                    alert('不合法的日期！');
+                                    loader.style.display = 'none';
+                                    refreshPage()
+                                    return false; // 中断表单的提交
+                                }
+                                return true; // 允许表单的提交
+                            }
+                        </script> 
+                        <script>
+                            function executeTask() {
+                                var loader = document.getElementById('loader');
+                                var divsToHide = document.querySelectorAll('.panel-default');
+                                
+                                // 隐藏其他的div
+                                for (var i = 0; i < divsToHide.length; i++) {
+                                    divsToHide[i].style.display = 'none';
+                                }
+
+                                loader.style.display = 'block'; // 显示转圈圈图标
+
+                                var dateInput = document.getElementById('date-input').value;
+
+                                var xhr = new XMLHttpRequest();
+                                // xhr.open('POST', '/index.html', true);
+                                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                xhr.onreadystatechange = function() {
+                                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                        window.location.href = '/cti_view.html'; // 跳转到结果页面
+                                    }
+                                };
+                                xhr.send('date-input=' + encodeURIComponent(dateInput));
+                            }
+                        </script>
+                        <script>
+                                // h7c1監聽事件
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    // 獲取日期選擇器和歷史日期文本框的引用
+                                    const dateInput = document.getElementById("date-input");
+                                    const pastDatesText = document.getElementById("past-dates-text");
+                                    const pastDatesLast = document.getElementById("past-dates-last");
+                                    // 監聽日期選擇器的變化事件
+
+                                    dateInput.addEventListener("change", function() {
+                                    // 獲取選中的日期
+                                    const selectedDate = new Date(dateInput.value);
+                                    const pastDate = new Date(dateInput.value);
+
+                                    // 減去一天
+                                    selectedDate.setDate(selectedDate.getDate() - 1);
+                                    pastDate.setDate(pastDate.getDate() - 7);
+
+                                    // 格式化為 YYYY-MM-DD 格式
+                                    const formattedDate = selectedDate.toISOString().split("T")[0];
+                                    const formattedPastDate = pastDate.toISOString().split("T")[0];
+
+                                    // 更新歷史日期文本框的值
+                                    pastDatesText.value = formattedDate;
+                                    pastDatesLast.value = formattedPastDate;
+                                    });
+                                });
+                                
+                                // h3c1監聽事件
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    // 獲取日期選擇器和歷史日期文本框的引用
+                                    const dateInput = document.getElementById("date-input2");
+                                    const pastDatesText = document.getElementById("past-dates-text2");
+                                    const pastDatesLast = document.getElementById("past-dates-last2");
+                                    // 監聽日期選擇器的變化事件
+
+                                    dateInput.addEventListener("change", function() {
+                                    // 獲取選中的日期
+                                    const selectedDate = new Date(dateInput.value);
+                                    const pastDate = new Date(dateInput.value);
+
+                                    // 減去一天
+                                    selectedDate.setDate(selectedDate.getDate() - 1);
+                                    pastDate.setDate(pastDate.getDate() - 3);
+
+                                    // 格式化為 YYYY-MM-DD 格式
+                                    const formattedDate = selectedDate.toISOString().split("T")[0];
+                                    const formattedPastDate = pastDate.toISOString().split("T")[0];
+
+                                    // 更新歷史日期文本框的值
+                                    pastDatesText.value = formattedDate;
+                                    pastDatesLast.value = formattedPastDate;
+                                    });
+                                });
+                                // h9c3監聽事件
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    // 獲取日期選擇器和歷史日期文本框的引用
+                                    const dateInput = document.getElementById("date-input3");
+                                    const pastDatesText = document.getElementById("past-dates-text3");
+                                    const pastDatesLast = document.getElementById("past-dates-last3");
+                                    const dateinputdisabled3 = document.getElementById("date-input-disabled3");
+                                    // 監聽日期選擇器的變化事件
+
+                                    dateInput.addEventListener("change", function() {
+                                    // 獲取選中的日期
+                                    const selectedDate = new Date(dateInput.value);
+                                    const pastDate = new Date(dateInput.value);
+                                    const dateinputdisabled = new Date(dateInput.value);
+
+
+                                    // 減去一天
+                                    selectedDate.setDate(selectedDate.getDate() - 1);
+                                    pastDate.setDate(pastDate.getDate() - 9);
+                                    dateinputdisabled.setDate(dateinputdisabled.getDate() - 2)
+                                    // 格式化為 YYYY-MM-DD 格式
+                                    const formattedDate = selectedDate.toISOString().split("T")[0];
+                                    const formattedPastDate = pastDate.toISOString().split("T")[0];
+                                    const formatteddateinputdisabled = dateinputdisabled.toISOString().split("T")[0];
+
+                                    // 更新歷史日期文本框的值
+                                    pastDatesText.value = formattedDate;
+                                    pastDatesLast.value = formattedPastDate;
+                                    dateinputdisabled3.value = formatteddateinputdisabled;
+                                    });
+                                });
+                                // h12c3監聽事件
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    // 獲取日期選擇器和歷史日期文本框的引用
+                                    const dateInput = document.getElementById("date-input4");
+                                    const pastDatesText = document.getElementById("past-dates-text4");
+                                    const pastDatesLast = document.getElementById("past-dates-last4");
+                                    const dateinputdisabled4 = document.getElementById("date-input-disabled4");
+                                    // 監聽日期選擇器的變化事件
+
+                                    dateInput.addEventListener("change", function() {
+                                    // 獲取選中的日期
+                                    const selectedDate = new Date(dateInput.value);
+                                    const pastDate = new Date(dateInput.value);
+                                    const dateinputdisabled = new Date(dateInput.value);
+
+
+                                    // 減去一天
+                                    selectedDate.setDate(selectedDate.getDate() - 1);
+                                    pastDate.setDate(pastDate.getDate() - 12);
+                                    dateinputdisabled.setDate(dateinputdisabled.getDate() - 2)
+                                    // 格式化為 YYYY-MM-DD 格式
+                                    const formattedDate = selectedDate.toISOString().split("T")[0];
+                                    const formattedPastDate = pastDate.toISOString().split("T")[0];
+                                    const formatteddateinputdisabled = dateinputdisabled.toISOString().split("T")[0];
+
+                                    // 更新歷史日期文本框的值
+                                    pastDatesText.value = formattedDate;
+                                    pastDatesLast.value = formattedPastDate;
+                                    dateinputdisabled4.value = formatteddateinputdisabled;
+                                    });
+                                });
+
+                                window.addEventListener('DOMContentLoaded', function() {
+                                // 取得所有的 date-input 輸入欄位
+                                const dateInputs = document.querySelectorAll('input[type="date"][name="date-input"]');
+                                const dateInputs2 = document.querySelectorAll('input[type="date"][name="date-input2"]');
+                                const dateInputs3 = document.querySelectorAll('input[type="date"][name="date-input3"]');
+                                const dateInputs4 = document.querySelectorAll('input[type="date"][name="date-input4"]');
+
+                                // 儲存初始值
+                                const initialValues = Array.from(dateInputs).map(function(dateInput) {
+                                    return dateInput.value;
+                                });
+
+                                const initialValues2 = Array.from(dateInputs2).map(function(dateInput) {
+                                    return dateInput.value;
+                                });
+
+                                const initialValues3 = Array.from(dateInputs3).map(function(dateInput) {
+                                    return dateInput.value;
+                                });
+
+                                const initialValues4 = Array.from(dateInputs4).map(function(dateInput) {
+                                    return dateInput.value;
+                                });
+
+                                // 監聽頁面卸載事件（重新載入頁面或返回上一頁）
+                                window.addEventListener('beforeunload', function() {
+                                    // 遍歷所有的 date-input 輸入欄位
+                                    dateInputs.forEach(function(dateInput, index) {
+                                    // 如果輸入欄位的值有變化，則清空它
+                                    if (dateInput.value !== initialValues[index]) {
+                                        dateInput.value = '';
+                                    }
+                                    });
+
+                                    dateInputs2.forEach(function(dateInput, index) {
+                                    // 如果輸入欄位的值有變化，則清空它
+                                    if (dateInput.value !== initialValues2[index]) {
+                                        dateInput.value = '';
+                                    }
+                                    });
+
+                                    dateInputs3.forEach(function(dateInput, index) {
+                                    // 如果輸入欄位的值有變化，則清空它
+                                    if (dateInput.value !== initialValues3[index]) {
+                                        dateInput.value = '';
+                                    }
+                                    });
+
+                                    dateInputs4.forEach(function(dateInput, index) {
+                                    // 如果輸入欄位的值有變化，則清空它
+                                    if (dateInput.value !== initialValues4[index]) {
+                                        dateInput.value = '';
+                                    }
+                                    });
+                                });
+                                });
+
+                            </script>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- /. ROW  -->
+				<footer><p>@2023 IDS LAB, All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="../static/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="../static/js/bootstrap.min.js"></script>
+	 
+    <!-- Metis Menu Js -->
+    <script src="../static/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="../static/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="../static/js/morris/morris.js"></script>
+	
+	
+	<script src="../static/js/easypiechart.js"></script>
+	<script src="../static/js/easypiechart-data.js"></script>
+	
+	
+    <!-- Custom Js -->
+    <script src="../static/js/custom-scripts.js"></script>
+
+
+</body>
+
+
+
+<style>
+    .date-container {
+      display: flex;
+      align-items: center;
+    }
+    
+    .date-label {
+      margin-right: 10px;
+    }
+  </style>
+
+</html>
