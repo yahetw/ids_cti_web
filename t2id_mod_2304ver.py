@@ -380,7 +380,7 @@ def find_representative_doc_url(topic_model, df, topic_index):
         print(df['url'].where(df['title_processed'] == content.split("\n\n")[0]).dropna().iloc[0])
     return
 
-def visualize_pic_download(topic_model):
+def visualize_pic_download(topic_model, predict_df_new):
     import os
     from datetime import datetime
 
@@ -408,6 +408,20 @@ def visualize_pic_download(topic_model):
         topic_model.visualize_barchart(top_n_topics=20).write_image(pic_path + "/barchart.png",format="png")
     except Exception as e:
         print("字彙圖產生失敗，原因：" + str(e))
+
+
+    # 畫出群集數量圖(長條圖)
+    import pandas as pd
+    import matplotlib.pyplot as plt
+
+    cluster_counts = predict_df_new['predict_label'].value_counts()
+
+    plt.bar(range(len(cluster_counts)), cluster_counts.values)
+    plt.xlabel('Cluster')
+    plt.ylabel('Count')
+    plt.title('Cluster Counts')
+    plt.xticks(range(len(cluster_counts)), cluster_counts.index, rotation=45)
+    plt.savefig(pic_path + "/cluster_count.png")
 
     return pic_path
 

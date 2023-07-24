@@ -210,7 +210,7 @@ def h12c3(time_start):
     predict_df_new['doc_burst_normalize'] = (predict_df_new['doc_burst'] - predict_df_new['doc_burst'].min()) / (predict_df_new['doc_burst'].max() - predict_df_new['doc_burst'].min())
     predict_df_new['doc_burst'] = round(predict_df_new['doc_burst_normalize'],2)
 
-    pic_path = t2id.visualize_pic_download(topic_model_new)
+    pic_path = t2id.visualize_pic_download(topic_model_new, predict_df_new)
     t2id.result_df_download(df0, predict_df_new, pic_path)
     topic_info_with_burst['repr_url'] = t2id.html_trend_doc_url(topic_model_new, predict_df_new)
 
@@ -271,7 +271,7 @@ def h9c3(time_start):
     predict_df_new['doc_burst_normalize'] = (predict_df_new['doc_burst'] - predict_df_new['doc_burst'].min()) / (predict_df_new['doc_burst'].max() - predict_df_new['doc_burst'].min())
     predict_df_new['doc_burst'] = round(predict_df_new['doc_burst_normalize'],2)
 
-    pic_path = t2id.visualize_pic_download(topic_model_new)
+    pic_path = t2id.visualize_pic_download(topic_model_new,predict_df_new)
     t2id.result_df_download(df0, predict_df_new, pic_path)
     topic_info_with_burst['repr_url'] = t2id.html_trend_doc_url(topic_model_new, predict_df_new)
 
@@ -332,7 +332,7 @@ def h3c1(time_start):
     predict_df_new['doc_burst_normalize'] = (predict_df_new['doc_burst'] - predict_df_new['doc_burst'].min()) / (predict_df_new['doc_burst'].max() - predict_df_new['doc_burst'].min())
     predict_df_new['doc_burst'] = round(predict_df_new['doc_burst_normalize'],2)
 
-    pic_path = t2id.visualize_pic_download(topic_model_new)
+    pic_path = t2id.visualize_pic_download(topic_model_new,predict_df_new)
     t2id.result_df_download(df0, predict_df_new, pic_path)
     topic_info_with_burst['repr_url'] = t2id.html_trend_doc_url(topic_model_new, predict_df_new)
 
@@ -422,7 +422,7 @@ def h7c1(time_start):
     predict_df_new['doc_burst_normalize'] = (predict_df_new['doc_burst'] - predict_df_new['doc_burst'].min()) / (predict_df_new['doc_burst'].max() - predict_df_new['doc_burst'].min())
     predict_df_new['doc_burst'] = round(predict_df_new['doc_burst_normalize'],2)
 
-    pic_path = t2id.visualize_pic_download(topic_model_new)
+    pic_path = t2id.visualize_pic_download(topic_model_new,predict_df_new)
     t2id.result_df_download(df0, predict_df_new, pic_path)
     topic_info_with_burst['repr_url'] = t2id.html_trend_doc_url(topic_model_new, predict_df_new)
 
@@ -546,7 +546,7 @@ def get_image():
 @app.route('/selected_result.html')
 def selected_result():
     if(not topic_info_with_burst.empty):
-        return render_template("./selected_result.html",topic_info_with_burst=topic_info_with_burst.values.tolist())
+        return render_template("./selected_result.html",topic_info_with_burst=topic_info_with_burst.values.tolist(),path = pic_path)
     else:
         return render_template('no_data.html')
     
