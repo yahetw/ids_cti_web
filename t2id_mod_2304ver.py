@@ -11,15 +11,6 @@ from bertopic import BERTopic
 import configparser
 config = configparser.ConfigParser()
 
-def check_gpu():
-    import torch
-    print(torch.__version__)
-    print(torch.cuda.is_available())
-
-    import tensorflow as tf
-    print(tf.test.gpu_device_name())
-
-    return
 
 def get_config(configfile):
     # Set config to connect DB server
@@ -208,13 +199,19 @@ def calc_c_tf_idf(topic_model):
     df_c_tf_idf = pd.DataFrame(c_tf_idf_scores.T.todense(), index = feature_names, columns = docs_index)
     return df_c_tf_idf
 
-def build_timestamp(docs, stopwords):
+def build_timestamp(docs, stopwords,device):
     ### 輸入：docs
     ### 輸出：topic model & nutrition
-
     # model_name = "all-MiniLM-L6-v2"；"all-mpnet-base-v2"
-    model_name = "all-mpnet-base-v2"
+
+    # cpu -> "all-MiniLM-L6-v2" ； gpu -> "all-mpnet-base-v2"
+    model_name = "all-MiniLM-L6-v2"
+
+    if (device == 'cuda'):
+        model_name = "all-mpnet-base-v2"
+
     top_n_words = 30
+    print("device = " + device)
     print("embedding model:" + model_name)
     print("降維方法:UMAP")
     print("分群模型:HDBSCAN")
@@ -222,7 +219,7 @@ def build_timestamp(docs, stopwords):
     
     # 開始用 BERTopic 轉向量，選擇模型 - 需GPU
     from sentence_transformers import SentenceTransformer, util
-    sentence_model = SentenceTransformer(model_name, device="cuda")
+    sentence_model = SentenceTransformer(model_name, device= device)
 
     from sklearn.feature_extraction.text import CountVectorizer
     vectorizer_model = CountVectorizer(ngram_range=(1, 1), stop_words=stopwords)

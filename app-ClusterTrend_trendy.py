@@ -15,8 +15,24 @@ import t2id_mod_2304ver as t2id
 t2id.get_config("./newsnow_config.ini")
 app = Flask(__name__)
 socketio = SocketIO(app)
-
 ###--flask 自動 reload 的cmd指令：flask run --reload---###
+
+###--------------choose cpu or gpu--------------###
+
+def check_gpu():
+    global device
+
+    import torch
+    print(torch.__version__)
+    print(torch.cuda.is_available())
+
+    import tensorflow as tf
+    print(tf.test.gpu_device_name())
+
+    if(torch.cuda.is_available()):
+        device = 'cuda'
+
+    return
 
 ###---------------------宣告--------------------###
 
@@ -26,6 +42,8 @@ predict_df = pd.DataFrame()
 topic_info_with_burst = pd.DataFrame()
 pic_path = None
 count_list = [0, 0, 0, 0]
+device = 'cpu'  # 預設使用cpu跑
+check_gpu()
 
 ###---------------------count_list-------------###
 
@@ -166,11 +184,11 @@ def h12c3(time_start):
     docs3 = df3['content_processed'].tolist()
     docs_new = df_new['content_processed'].tolist()
 
-    topic_model0, nutr0 = t2id.build_timestamp(docs0, stopwords)
-    topic_model1, nutr1 = t2id.build_timestamp(docs1, stopwords)
-    topic_model2, nutr2 = t2id.build_timestamp(docs2, stopwords)
-    topic_model3, nutr3 = t2id.build_timestamp(docs3, stopwords)
-    topic_model_new, nutr_new = t2id.build_timestamp(docs_new, stopwords)
+    topic_model0, nutr0 = t2id.build_timestamp(docs0, stopwords,device)
+    topic_model1, nutr1 = t2id.build_timestamp(docs1, stopwords,device)
+    topic_model2, nutr2 = t2id.build_timestamp(docs2, stopwords,device)
+    topic_model3, nutr3 = t2id.build_timestamp(docs3, stopwords,device)
+    topic_model_new, nutr_new = t2id.build_timestamp(docs_new, stopwords,device)
 
     # 計算 timestamp1 相比 timestamp0 的 burst
     topic_info_with_burst, burst_sorted = t2id.exp4_build_topic_info_with_burst(nutr0, nutr1, nutr2, nutr3,nutr_new, topic_model_new)
@@ -228,10 +246,10 @@ def h9c3(time_start):
     docs2 = df2['content_processed'].tolist()
     docs_new = df_new['content_processed'].tolist()
 
-    topic_model0, nutr0 = t2id.build_timestamp(docs0, stopwords)
-    topic_model1, nutr1 = t2id.build_timestamp(docs1, stopwords)
-    topic_model2, nutr2 = t2id.build_timestamp(docs2, stopwords)
-    topic_model_new, nutr_new = t2id.build_timestamp(docs_new, stopwords)
+    topic_model0, nutr0 = t2id.build_timestamp(docs0, stopwords,device)
+    topic_model1, nutr1 = t2id.build_timestamp(docs1, stopwords,device)
+    topic_model2, nutr2 = t2id.build_timestamp(docs2, stopwords,device)
+    topic_model_new, nutr_new = t2id.build_timestamp(docs_new, stopwords,device)
 
     # 計算 timestamp1 相比 timestamp0 的 burst
     topic_info_with_burst, burst_sorted = t2id.exp3_build_topic_info_with_burst(nutr0, nutr1, nutr2,nutr_new, topic_model_new)
@@ -289,10 +307,10 @@ def h3c1(time_start):
     docs2 = df2['content_processed'].tolist()
     docs_new = df_new['content_processed'].tolist()
 
-    topic_model0, nutr0 = t2id.build_timestamp(docs0, stopwords)
-    topic_model1, nutr1 = t2id.build_timestamp(docs1, stopwords)
-    topic_model2, nutr2 = t2id.build_timestamp(docs2, stopwords)
-    topic_model_new, nutr_new = t2id.build_timestamp(docs_new, stopwords)
+    topic_model0, nutr0 = t2id.build_timestamp(docs0, stopwords,device)
+    topic_model1, nutr1 = t2id.build_timestamp(docs1, stopwords,device)
+    topic_model2, nutr2 = t2id.build_timestamp(docs2, stopwords,device)
+    topic_model_new, nutr_new = t2id.build_timestamp(docs_new, stopwords,device)
 
     # 計算 timestamp1 相比 timestamp0 的 burst
     topic_info_with_burst, burst_sorted = t2id.exp3_build_topic_info_with_burst(nutr0, nutr1, nutr2,nutr_new, topic_model_new)
@@ -375,14 +393,14 @@ def h7c1(time_start):
     docs6 = df6['content_processed'].tolist()
     docs_new = df_new['content_processed'].tolist()
 
-    topic_model0, nutr0 = t2id.build_timestamp(docs0, stopwords)
-    topic_model1, nutr1 = t2id.build_timestamp(docs1, stopwords)
-    topic_model2, nutr2 = t2id.build_timestamp(docs2, stopwords)
-    topic_model3, nutr3 = t2id.build_timestamp(docs3, stopwords)
-    topic_model4, nutr4 = t2id.build_timestamp(docs4, stopwords)
-    topic_model5, nutr5 = t2id.build_timestamp(docs5, stopwords)
-    topic_model6, nutr6 = t2id.build_timestamp(docs6, stopwords)
-    topic_model_new, nutr_new = t2id.build_timestamp(docs_new, stopwords)
+    topic_model0, nutr0 = t2id.build_timestamp(docs0, stopwords,device)
+    topic_model1, nutr1 = t2id.build_timestamp(docs1, stopwords,device)
+    topic_model2, nutr2 = t2id.build_timestamp(docs2, stopwords,device)
+    topic_model3, nutr3 = t2id.build_timestamp(docs3, stopwords,device)
+    topic_model4, nutr4 = t2id.build_timestamp(docs4, stopwords,device)
+    topic_model5, nutr5 = t2id.build_timestamp(docs5, stopwords,device)
+    topic_model6, nutr6 = t2id.build_timestamp(docs6, stopwords,device)
+    topic_model_new, nutr_new = t2id.build_timestamp(docs_new, stopwords,device)
 
     # 計算 timestamp1 相比 timestamp0 的 burst
     topic_info_with_burst, burst_sorted = t2id.exp7_build_topic_info_with_burst(nutr0, nutr1, nutr2, nutr3, nutr4, nutr5, nutr6, nutr_new, topic_model_new)
