@@ -54,11 +54,8 @@ def get_news_times():
     global timestamp
     import time as tik
     global unix_now_time
-    headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-    'cookie' : 'nn_uid=ID=20230113124108:20031; uky=c_101-52-51-53-55-52-53-55; __gads=ID=a8f508913da9aae2:T=1673613768:S=ALNI_MaXhnKshaWNI3_B4S2tsL7ZrjUHyQ; _gid=GA1.3.1866699498.1674844904; cookie_policy=2; nnusrst=c_Pubs._QhZ-ArtList.1164452301;1164383991-CookieConsent.2; nn_sid=05f39165b0957402573c; __gpi=UID=00000ba35459f50e:T=1673613768:RT=1675190027:S=ALNI_MYgrQ3BB6jRaIPrz_4wPOGfjbi8mQ; nn_ssn=c_Qh; _ga=GA1.3.1553473696.1673583694; _ga_ZS7YYS67BF=GS1.1.1675180683.14.1.1675193984.0.0.0; NNNewsfeedHistory=c__C.326-A.Cyber+Security-K.Qu-S.1675194287-N.15653-Y.UKZ-_C.1-A.Technology-K.Qu-S.1675168527-N.15630-Y.UK; NN_Eng=0'
-    }
-    list_req = requests.get(target_url, headers=headers)
+    
+    list_req = requests.get(target_url)
     if list_req.status_code == requests.codes.ok:
         soup = BeautifulSoup(list_req.content, HTML_PARSER)
     
@@ -93,11 +90,8 @@ def get_news_times():
 def get_news_link(j):
     global url
     global title
-    headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-    'cookie' : 'nn_uid=ID=20230113124108:20031; uky=c_101-52-51-53-55-52-53-55; __gads=ID=a8f508913da9aae2:T=1673613768:S=ALNI_MaXhnKshaWNI3_B4S2tsL7ZrjUHyQ; _gid=GA1.3.1866699498.1674844904; cookie_policy=2; nnusrst=c_Pubs._QhZ-ArtList.1164452301;1164383991-CookieConsent.2; nn_sid=05f39165b0957402573c; __gpi=UID=00000ba35459f50e:T=1673613768:RT=1675190027:S=ALNI_MYgrQ3BB6jRaIPrz_4wPOGfjbi8mQ; nn_ssn=c_Qh; _ga=GA1.3.1553473696.1673583694; _ga_ZS7YYS67BF=GS1.1.1675180683.14.1.1675193984.0.0.0; NNNewsfeedHistory=c__C.326-A.Cyber+Security-K.Qu-S.1675194287-N.15653-Y.UKZ-_C.1-A.Technology-K.Qu-S.1675168527-N.15630-Y.UK; NN_Eng=0'
-    }
-    list_req = requests.get(target_url, headers=headers)
+    
+    list_req = requests.get(target_url)
     if list_req.status_code == requests.codes.ok:
         soup = BeautifulSoup(list_req.content, HTML_PARSER)
 
@@ -112,15 +106,12 @@ def get_news_link(j):
     print('-------------------------------------------------------')
 
 def get_news_contents():
-    headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-    'cookie' : 'nn_uid=ID=20230113124108:20031; uky=c_101-52-51-53-55-52-53-55; __gads=ID=a8f508913da9aae2:T=1673613768:S=ALNI_MaXhnKshaWNI3_B4S2tsL7ZrjUHyQ; _gid=GA1.3.1866699498.1674844904; cookie_policy=2; nnusrst=c_Pubs._QhZ-ArtList.1164452301;1164383991-CookieConsent.2; nn_sid=05f39165b0957402573c; __gpi=UID=00000ba35459f50e:T=1673613768:RT=1675190027:S=ALNI_MYgrQ3BB6jRaIPrz_4wPOGfjbi8mQ; nn_ssn=c_Qh; _ga=GA1.3.1553473696.1673583694; _ga_ZS7YYS67BF=GS1.1.1675180683.14.1.1675193984.0.0.0; NNNewsfeedHistory=c__C.326-A.Cyber+Security-K.Qu-S.1675194287-N.15653-Y.UKZ-_C.1-A.Technology-K.Qu-S.1675168527-N.15630-Y.UK; NN_Eng=0'
-    }
+    
 
     content =''
     session_requests = requests.session()
     #使用GET方法取得網頁資訊
-    response = session_requests.get(url,headers=headers)
+    response = session_requests.get(url)
     print("Response status is : " + str(response.status_code))
 
     if response.status_code == requests.codes.ok:
@@ -131,7 +122,7 @@ def get_news_contents():
     web = a_tags.pop().get('href')
     print("trans_url is : " + web)
 
-    news_url = requests.get(web, headers=headers)
+    news_url = requests.get(web)
     if news_url.status_code == requests.codes.ok:
         soup = BeautifulSoup(news_url.content,"html.parser")
 
