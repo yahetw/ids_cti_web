@@ -61,16 +61,16 @@ def get_news_times():
     global timestamp
     import time as tik
     global unix_now_time
-    headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-    'cookie' : 'nn_uid=ID=20230113124108:20031; uky=c_101-52-51-53-55-52-53-55; __gads=ID=a8f508913da9aae2:T=1673613768:S=ALNI_MaXhnKshaWNI3_B4S2tsL7ZrjUHyQ; _gid=GA1.3.1866699498.1674844904; cookie_policy=2; nnusrst=c_Pubs._QhZ-ArtList.1164452301;1164383991-CookieConsent.2; nn_sid=05f39165b0957402573c; __gpi=UID=00000ba35459f50e:T=1673613768:RT=1675190027:S=ALNI_MYgrQ3BB6jRaIPrz_4wPOGfjbi8mQ; nn_ssn=c_Qh; _ga=GA1.3.1553473696.1673583694; _ga_ZS7YYS67BF=GS1.1.1675180683.14.1.1675193984.0.0.0; NNNewsfeedHistory=c__C.326-A.Cyber+Security-K.Qu-S.1675194287-N.15653-Y.UKZ-_C.1-A.Technology-K.Qu-S.1675168527-N.15630-Y.UK; NN_Eng=0'
-    }
-    list_req = requests.get(target_url, headers=headers)
+    # headers = {
+    # 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+    # 'cookie' : 'nn_uid=ID=20230113124108:20031; uky=c_101-52-51-53-55-52-53-55; __gads=ID=a8f508913da9aae2:T=1673613768:S=ALNI_MaXhnKshaWNI3_B4S2tsL7ZrjUHyQ; _gid=GA1.3.1866699498.1674844904; cookie_policy=2; nnusrst=c_Pubs._QhZ-ArtList.1164452301;1164383991-CookieConsent.2; nn_sid=05f39165b0957402573c; __gpi=UID=00000ba35459f50e:T=1673613768:RT=1675190027:S=ALNI_MYgrQ3BB6jRaIPrz_4wPOGfjbi8mQ; nn_ssn=c_Qh; _ga=GA1.3.1553473696.1673583694; _ga_ZS7YYS67BF=GS1.1.1675180683.14.1.1675193984.0.0.0; NNNewsfeedHistory=c__C.326-A.Cyber+Security-K.Qu-S.1675194287-N.15653-Y.UKZ-_C.1-A.Technology-K.Qu-S.1675168527-N.15630-Y.UK; NN_Eng=0'
+    # }
+    list_req = requests.get(target_url)
     if list_req.status_code == requests.codes.ok:
         soup = BeautifulSoup(list_req.content, HTML_PARSER)
-    
     time_list =[]
     times = soup.find_all('span', 'time',limit=amount)
+    # print(times)
     for time in times:
         time_list.append(time['data-time'])
 
@@ -78,7 +78,7 @@ def get_news_times():
     print("爬取自：" + str(datetime.fromtimestamp(unix_now_time)) + " 到 " + str(datetime.fromtimestamp(unix_now_time - 28800)) + "的資料")
     print("###-----------------------------------------------------------------------------------------------------------------------------------------------###")
 
-    for i in range(count,len(time_list)):
+    for i in range(count,len(time_list)-1):
         delay_choices_1 = [10, 20, 12, 11]
         delay_1 = random.choice(delay_choices_1)
         print("休息時間：" + str(delay_1))
@@ -176,7 +176,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
     days = args.days
     amount = math.inf
-
     print(f"爬蟲爬取次數(一次8小時)：至今前{ days:^3} 次，每天爬取 {amount} 篇新聞(若數量為inf，則代表每天爬取當次新聞) ")
     print("目標網址：" + target_url)
 
